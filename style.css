@@ -1,0 +1,208 @@
+/* style.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    box-sizing: border-box; /* Ensures padding doesn't add to total width */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 1200px; /* Max width for the overall layout */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 2em; /* Adjust heading size for better readability */
+}
+
+.map-container {
+    position: relative; /* Essential for positioning markers */
+    width: 100%; /* Take full width of its parent */
+    max-width: 1024px; /* Maintain original image aspect ratio without exceeding its natural width */
+    height: auto; /* IMPORTANT: This makes the container's height adjust to the image */
+    overflow: hidden; /* Hides any content that might overflow */
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.map-image {
+    width: 100%; /* Image fills the map-container's width */
+    height: auto; /* This maintains the image's aspect ratio, preventing squishing */
+    display: block; /* Removes extra space below the image */
+}
+
+/* Style for cheese markers */
+.cheese-marker {
+    position: absolute; /* Position markers relative to map-container */
+    width: 24px;   /* Size of your marker */
+    height: 24px;  /* Size of your marker */
+    background-color: #e74c3c; /* Red dot */
+    border: 2px solid #c0392b;
+    border-radius: 50%; /* Makes it a circle */
+    cursor: pointer;
+    transform: translate(-50%, -50%); /* Centers the dot on the exact x,y coordinate */
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    z-index: 10; /* Ensure markers are above the map */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
+
+.cheese-marker:hover {
+    background-color: #c0392b;
+    transform: translate(-50%, -50%) scale(1.2); /* Makes it slightly larger on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.cheese-marker.active {
+    background-color: #27ae60; /* Green when active */
+    border-color: #2ecc71;
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.7);
+    transform: translate(-50%, -50%) scale(1.3);
+}
+
+.info-panel {
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 600px; /* Max width for the info panel */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+}
+
+.info-panel h2 {
+    color: #34495e;
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.info-panel p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.info-panel ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+.info-panel ul li {
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.info-panel ul li:hover {
+    background-color: #e0e0e0;
+    border-color: #ccc;
+}
+
+.info-panel ul li.active {
+    background-color: #3498db; /* Blue when active */
+    color: white;
+    font-weight: bold;
+    border-color: #2980b9;
+}
+
+/* Styling for the cheese details section */
+.cheese-details h3 {
+    color: #27ae60;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+}
+
+.cheese-details p {
+    margin-bottom: 10px;
+}
+
+.cheese-details button#backToList {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+    margin-top: 15px;
+}
+
+.cheese-details button#backToList:hover {
+    background-color: #2980b9;
+}
+
+
+/* Responsive layout for larger screens: map and info panel side-by-side */
+@media (min-width: 1025px) { /* This breakpoint ensures enough space for both elements */
+    .container {
+        flex-direction: row; /* Arrange items in a row */
+        align-items: flex-start; /* Align items to the top */
+        justify-content: center; /* Center the entire content block */
+        gap: 30px; /* Space between map and info panel */
+    }
+
+    .map-container {
+        margin-right: 0; /* Remove previous margin-right if it was applied */
+        margin-bottom: 0; /* Remove margin-bottom as items are in a row */
+        flex-shrink: 0; /* Prevent the map from shrinking if there's less space */
+    }
+
+    .info-panel {
+        margin-top: 0; /* Remove margin-top as items are in a row */
+        flex-grow: 1; /* Allow the info panel to take up available space */
+    }
+}
+
+/* Further adjustments for very small screens (e.g., mobile portrait) */
+@media (max-width: 768px) {
+    body {
+        padding: 10px; /* Reduce overall padding */
+    }
+
+    .container {
+        padding: 15px; /* Reduce container padding */
+    }
+
+    h1 {
+        font-size: 1.8em; /* Slightly smaller title */
+    }
+
+    .info-panel h2 {
+        font-size: 1.3em;
+    }
+
+    .cheese-marker {
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+    }
+}
