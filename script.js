@@ -67,6 +67,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
+     * Scrolls the map container to bring the specified marker into the center of view.
+     * @param {HTMLElement} markerElement - The HTML element of the marker to scroll to.
+     */
+    function scrollToMarker(markerElement) {
+        if (!markerElement || !mapContainer) {
+            console.warn('Cannot scroll to marker: markerElement or mapContainer not found.');
+            return;
+        }
+
+        // Get the current dimensions and scroll position of the map container
+        const mapContainerRect = mapContainer.getBoundingClientRect();
+        // Get the marker's position and size relative to the viewport
+        const markerRect = markerElement.getBoundingClientRect();
+
+        // Calculate the marker's position relative to the *scrollable content* within the mapContainer
+        // This is necessary because getBoundingClientRect is relative to the viewport.
+        const markerRelativeLeft = markerRect.left - mapContainerRect.left + mapContainer.scrollLeft;
+        const markerRelativeTop = markerRect.top - mapContainerRect.top + mapContainer.scrollTop;
+
+        // Calculate the target scroll position to center the marker within the mapContainer's view.
+        // We subtract half of the mapContainer's visible width/height and add half of the marker's width/height
+        // to get the marker's center into the view's center.
+        const targetScrollLeft = markerRelativeLeft - (mapContainerRect.width / 2) + (markerRect.width / 2);
+        const targetScrollTop = markerRelativeTop - (mapContainerRect.height / 2) + (markerRect.height / 2);
+
+        // Apply the scroll with smooth animation
+        mapContainer.scrollTo({
+            left: targetScrollLeft,
+            top: targetScrollTop,
+            behavior: 'smooth'
+        });
+    }
+
+
+    /**
      * Generates and places the cheese markers on the map.
      * The positions are calculated as percentages of the map's current size
      * based on the original map dimensions and the fixed coordinates.
@@ -92,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             marker.addEventListener('click', () => {
                 displayCheeseDetails(cheese);
                 setActiveCheese(cheese.id);
+                scrollToMarker(marker); // Scroll map to this marker
             });
             cheeseMarkersDiv.appendChild(marker); // Add marker to the map container
         });
@@ -121,6 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
             listItem.addEventListener('click', () => {
                 displayCheeseDetails(cheese);
                 setActiveCheese(cheese.id);
+                // When clicking a list item, find its corresponding marker and scroll to it
+                const targetMarker = document.getElementById(`marker-${cheese.id}`);
+                scrollToMarker(targetMarker);
             });
             currentCheeseListUl.appendChild(listItem); // Add list item to the list
         });
@@ -134,9 +173,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Generate the initial list of cheeses in the info panel
     generateCheeseList();
 
-    // Although markers are percentage-based and scale, if there were
-    // other elements or dynamic calculations dependent on the map's
-    // rendered size, you would place them inside a resize listener.
-    // For this specific setup, the percentage positioning handles resizing automatically.
-    // window.addEventListener('resize', generateMarkers); // Uncomment if markers need re-evaluation on resize
+    // The markers are now percentage-based, so they automatically scale with the map-container.
+    // However, if the map-container's *own* size changes (e.g., due to window resizing affecting flex layout),
+    // you might want to call generateMarkers() again if you had dynamic content inside markers
+    // that needed re-evaluation based on the new rendered size. For simple dots, it's less critical.
+    // window.addEventListener('resize', generateMarkers); // Uncomment if needed for more complex marker rendering
 });

@@ -38,7 +38,7 @@ h1 {
     width: 100%; /* Take full width of its parent */
     max-width: 1024px; /* Maintain original image aspect ratio without exceeding its natural width */
     height: auto; /* IMPORTANT: This makes the container's height adjust to the image */
-    overflow: hidden; /* Hides any content that might overflow */
+    overflow: auto; /* CHANGED: Allows scrolling if map content overflows */
     margin-bottom: 20px;
     border: 1px solid #ddd;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
