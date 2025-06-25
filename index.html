@@ -9,16 +9,20 @@
 <body>
     <div class="container">
         <h1>British & Irish Cheese Map</h1>
-        <div class="map-container">
-            <img src="map.png" alt="Map of UK and Ireland" class="map-image">
-            <div id="cheese-markers"></div>
-        </div>
-        <div class="info-panel" id="info-panel">
-            <h2>Select a Cheese</h2>
-            <p>Click on a cheese marker on the map to learn more, or select from the list below:</p>
-            <ul id="cheese-list">
+        <div class="content-wrapper"> <!-- NEW WRAPPER ADDED HERE -->
+            <div class="map-container">
+                <img src="map.png" alt="Map of UK and Ireland" class="map-image">
+                <!-- Cheese markers will be added here by JavaScript -->
+                <div id="cheese-markers"></div>
+            </div>
+            <div class="info-panel" id="info-panel">
+                <h2>Select a Cheese</h2>
+                <p>Click on a cheese marker on the map to learn more, or select from the list below:</p>
+                <ul id="cheese-list">
+                    <!-- Cheese names will be added here by JavaScript -->
                 </ul>
-        </div>
+            </div>
+        </div> <!-- END OF NEW WRAPPER -->
     </div>
 
     <script src="script.js"></script>

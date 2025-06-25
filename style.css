@@ -1,4 +1,4 @@
-/* style.css - Beautified Version */
+/* style.css - Beautified Version with Centered Title Fix */
 
 /* Import Google Font - Inter for a modern look */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -19,8 +19,8 @@ body {
 
 .container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; /* Changed to always be column */
+    align-items: center; /* Center items horizontally within the column */
     background-color: #ffffff; /* White background for the main content block */
     border-radius: 12px; /* More rounded corners for a softer look */
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); /* Softer, more pronounced shadow */
@@ -28,15 +28,25 @@ body {
     max-width: 1300px; /* Wider max width to accommodate side-by-side on larger screens */
     width: 100%;
     box-sizing: border-box;
-    gap: 30px; /* Space between map and info panel on larger screens */
+    /* Removed gap from here, moved to content-wrapper */
 }
 
 h1 {
     color: #2c3e50;
     margin-bottom: 25px; /* Slightly more space below the main title */
-    text-align: center;
+    text-align: center; /* This ensures the text itself is centered */
     font-size: 2.5em; /* Larger, more impactful title */
     font-weight: 700; /* Bolder font weight */
+    width: 100%; /* Ensure h1 takes full width to allow text-align: center to work */
+}
+
+/* New wrapper to control the side-by-side layout */
+.content-wrapper {
+    display: flex;
+    flex-direction: column; /* Default to column for small screens */
+    align-items: center; /* Center items within this wrapper */
+    width: 100%; /* Take full width of its parent (.container) */
+    gap: 30px; /* Space between map and info panel when they become row */
 }
 
 .map-container {
@@ -45,11 +55,12 @@ h1 {
     max-width: 1024px; /* Original image width */
     height: auto; /* Ensures map image maintains aspect ratio */
     overflow: auto; /* Allows map to scroll if larger than container */
-    margin-bottom: 20px; /* Space below map before info panel on small screens */
+    margin-bottom: 0; /* No bottom margin needed if in a flex row (gap handles spacing) */
     border: 1px solid #e0e0e0; /* Lighter border */
     border-radius: 8px; /* Rounded corners for the map container */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Subtle shadow for depth */
     background-color: #f0f0f0; /* Slight background for consistency */
+    flex-shrink: 0; /* Prevent the map from shrinking excessively in flex row */
 }
 
 .map-image {
@@ -102,6 +113,8 @@ h1 {
     max-width: 600px; /* Max width for the info panel */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Subtle shadow */
     box-sizing: border-box;
+    margin-top: 0; /* No top margin needed if in a flex row (gap handles spacing) */
+    flex-grow: 1; /* Allow the info panel to take up available space in row layout */
 }
 
 .info-panel h2 {
@@ -192,24 +205,10 @@ h1 {
 
 /* Responsive layout for larger screens: map and info panel side-by-side */
 @media (min-width: 1025px) {
-    .container {
+    .content-wrapper { /* Apply flex-row to the new wrapper */
         flex-direction: row;
-        align-items: flex-start;
-        justify-content: center;
-    }
-
-    .map-container {
-        margin-right: 0;
-        margin-bottom: 0;
-        flex-shrink: 0;
-        /* Calculate aspect ratio for consistent height based on max-width */
-        /* height: calc(1536px * (100vw / 1024px)); /* Example: if you wanted fixed aspect ratio based on original image and viewport width.
-                                                     * However, `height: auto` on .map-image is generally better with max-width */
-    }
-
-    .info-panel {
-        margin-top: 0;
-        flex-grow: 1; /* Allows info panel to take remaining space */
+        align-items: flex-start; /* Align items to the top */
+        justify-content: center; /* Center the entire content block */
     }
 }
 
