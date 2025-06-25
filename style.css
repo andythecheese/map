@@ -1,179 +1,179 @@
-/* style.css - Beautified Version with Centered Title Fix */
+/* style.css - Finalized Layout and Beautification */
 
-/* Import Google Font - Inter for a modern look */
+/* Import Google Font - Inter for a modern, clean look */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 body {
-    font-family: 'Inter', sans-serif; /* Using the new font */
-    margin: 0;
-    padding: 24px; /* Slightly more padding around the page */
-    background-color: #f8f9fa; /* A very light, soft background color */
-    color: #343a40; /* Darker text for better contrast */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Align content to the top */
-    min-height: 100vh;
-    box-sizing: border-box; /* Include padding in element's total width/height */
-    line-height: 1.6; /* Improved line spacing for readability */
+    font-family: 'Inter', sans-serif; /* Set the main font for the entire page */
+    margin: 0; /* Remove default body margin */
+    padding: 24px; /* Add consistent padding around the page content */
+    background-color: #f8f9fa; /* A very light, subtle background color for the page */
+    color: #343a40; /* Standard dark gray for body text for good readability */
+    display: flex; /* Use flexbox for main body layout */
+    justify-content: center; /* Center the main .container horizontally */
+    align-items: flex-start; /* Align content to the top vertically */
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+    line-height: 1.6; /* Improve line spacing for better readability */
 }
 
 .container {
-    display: flex;
-    flex-direction: column; /* Changed to always be column */
-    align-items: center; /* Center items horizontally within the column */
+    display: flex; /* Use flexbox for the main container */
+    flex-direction: column; /* Arrange children (h1 and content-wrapper) vertically */
+    align-items: center; /* Center children horizontally within the column flow */
     background-color: #ffffff; /* White background for the main content block */
-    border-radius: 12px; /* More rounded corners for a softer look */
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); /* Softer, more pronounced shadow */
-    padding: 30px; /* Increased padding inside the container */
-    max-width: 1300px; /* Wider max width to accommodate side-by-side on larger screens */
-    width: 100%;
+    border-radius: 12px; /* Softly rounded corners for the container */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); /* A soft, diffused shadow for depth */
+    padding: 30px; /* Generous internal padding for the container */
+    max-width: 1300px; /* Max width for the overall layout to prevent it from becoming too wide */
+    width: 100%; /* Ensure the container takes full available width up to max-width */
     box-sizing: border-box;
-    /* Removed gap from here, moved to content-wrapper */
 }
 
 h1 {
-    color: #2c3e50;
-    margin-bottom: 25px; /* Slightly more space below the main title */
-    text-align: center; /* This ensures the text itself is centered */
-    font-size: 2.5em; /* Larger, more impactful title */
-    font-weight: 700; /* Bolder font weight */
-    width: 100%; /* Ensure h1 takes full width to allow text-align: center to work */
+    color: #2c3e50; /* A dark blue-gray color for the heading */
+    margin-bottom: 25px; /* Space below the main title */
+    text-align: center; /* Center the text content of the h1 itself */
+    font-size: 2.5em; /* Large, prominent title size */
+    font-weight: 700; /* Bold font weight for impact */
+    width: 100%; /* Ensure h1 takes full width to allow text-align: center to work effectively */
+    line-height: 1.2; /* Tighter line height for large headings */
 }
 
-/* New wrapper to control the side-by-side layout */
+/* This new wrapper controls the side-by-side layout for the map and info panel */
 .content-wrapper {
-    display: flex;
-    flex-direction: column; /* Default to column for small screens */
-    align-items: center; /* Center items within this wrapper */
+    display: flex; /* Enable flexbox for this wrapper */
+    flex-direction: column; /* Default to vertical stacking for small screens */
+    align-items: center; /* Center content within this wrapper (when in column mode) */
     width: 100%; /* Take full width of its parent (.container) */
-    gap: 30px; /* Space between map and info panel when they become row */
+    gap: 30px; /* Space between the map and info panel when they are side-by-side */
 }
 
 .map-container {
-    position: relative;
-    width: 100%;
-    max-width: 1024px; /* Original image width */
-    height: auto; /* Ensures map image maintains aspect ratio */
-    overflow: auto; /* Allows map to scroll if larger than container */
-    margin-bottom: 0; /* No bottom margin needed if in a flex row (gap handles spacing) */
-    border: 1px solid #e0e0e0; /* Lighter border */
+    position: relative; /* Crucial for positioning the cheese markers absolutely within it */
+    width: 100%; /* Take full width of its parent */
+    max-width: 800px; /* CHANGED: Set a smaller maximum width for the map */
+    height: auto; /* IMPORTANT: Allows the container's height to adjust naturally to the image's aspect ratio */
+    overflow: auto; /* Enables scrollbars if the map content is larger than the visible area */
+    margin-bottom: 0; /* No bottom margin when used with `gap` in a flex container */
+    border: 1px solid #e0e0e0; /* Light gray border */
     border-radius: 8px; /* Rounded corners for the map container */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Subtle shadow for depth */
-    background-color: #f0f0f0; /* Slight background for consistency */
-    flex-shrink: 0; /* Prevent the map from shrinking excessively in flex row */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Subtle shadow for visual separation */
+    background-color: #f0f0f0; /* Slight background for visual consistency */
+    flex-shrink: 0; /* Prevent the map from shrinking excessively when in a flex row */
 }
 
 .map-image {
-    width: 100%;
-    height: auto; /* Essential for aspect ratio */
-    display: block;
-    border-radius: 8px; /* Apply border-radius to the image itself */
+    width: 100%; /* Image fills the map-container's width */
+    height: auto; /* Crucial: This maintains the image's aspect ratio, preventing distortion (squishing/stretching) */
+    display: block; /* Removes any extra space below the image (common with inline images) */
+    border-radius: 8px; /* Apply border-radius to the image itself for consistency */
 }
 
-/* Style for cheese markers */
+/* Styling for the interactive cheese markers on the map */
 .cheese-marker {
-    position: absolute;
-    width: 28px;   /* Slightly larger markers */
+    position: absolute; /* Position markers precisely relative to the map-container */
+    width: 28px;   /* Size of the marker dot */
     height: 28px;
-    background-color: #e74c3c; /* Vibrant red */
-    border: 3px solid #c0392b; /* Thicker border */
-    border-radius: 50%;
-    cursor: pointer;
-    transform: translate(-50%, -50%); /* Center dot accurately */
-    transition: all 0.25s ease-in-out; /* Smoother transitions for all properties */
-    z-index: 10;
-    display: flex;
+    background-color: #e74c3c; /* Vibrant red color for markers */
+    border: 3px solid #c0392b; /* Thicker, darker red border */
+    border-radius: 50%; /* Makes the marker a perfect circle */
+    cursor: pointer; /* Indicate that the element is clickable */
+    transform: translate(-50%, -50%); /* Centers the dot on the exact x,y coordinate provided in JS */
+    transition: all 0.25s ease-in-out; /* Smooth animation for hover and active states */
+    z-index: 10; /* Ensure markers appear above the map image */
+    display: flex; /* Use flexbox to center any content (like numbers) inside the marker */
     justify-content: center;
     align-items: center;
-    font-size: 16px; /* Larger number */
-    font-weight: 600; /* Bolder number */
-    color: white;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); /* Small shadow for depth */
+    font-size: 16px; /* Font size for any text inside the marker */
+    font-weight: 600; /* Bolder font for marker text */
+    color: white; /* White text color for contrast */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); /* Small shadow for a raised effect */
 }
 
 .cheese-marker:hover {
-    background-color: #c0392b;
-    transform: translate(-50%, -50%) scale(1.3); /* More pronounced hover effect */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    background-color: #c0392b; /* Darker red on hover */
+    transform: translate(-50%, -50%) scale(1.3); /* Slightly larger and more prominent on hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); /* More pronounced shadow on hover */
 }
 
 .cheese-marker.active {
-    background-color: #28a745; /* Green for active */
-    border-color: #218838;
-    box-shadow: 0 4px 20px rgba(40, 167, 69, 0.7); /* Stronger active shadow */
-    transform: translate(-50%, -50%) scale(1.4); /* Even larger when active */
+    background-color: #28a745; /* Green color when a cheese is actively selected */
+    border-color: #218838; /* Darker green border */
+    box-shadow: 0 4px 20px rgba(40, 167, 69, 0.7); /* Stronger, glowing shadow for active state */
+    transform: translate(-50%, -50%) scale(1.4); /* Even larger when active to draw attention */
 }
 
-
+/* Styling for the information panel */
 .info-panel {
-    background-color: #f0f3f5; /* Light gray background for info panel */
+    background-color: #f0f3f5; /* Light gray background for the info panel */
     border-radius: 10px; /* Consistent rounded corners */
-    padding: 25px; /* Generous padding */
-    width: 100%;
-    max-width: 600px; /* Max width for the info panel */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+    padding: 25px; /* Generous internal padding */
+    width: 100%; /* Take full width on small screens */
+    max-width: 600px; /* Set a maximum width for the info panel */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* Subtle shadow for depth */
     box-sizing: border-box;
-    margin-top: 0; /* No top margin needed if in a flex row (gap handles spacing) */
-    flex-grow: 1; /* Allow the info panel to take up available space in row layout */
+    margin-top: 0; /* No top margin when used with `gap` in a flex row */
+    flex-grow: 1; /* Allows the info panel to take up available space in row layout */
 }
 
 .info-panel h2 {
-    color: #34495e;
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 1.8em; /* Larger heading */
-    font-weight: 600;
-    border-bottom: 2px solid #e9ecef; /* Subtle separator */
-    padding-bottom: 10px;
+    color: #34495e; /* Dark blue-gray for info panel headings */
+    margin-top: 0; /* Remove default top margin */
+    margin-bottom: 15px; /* Space below heading */
+    font-size: 1.8em; /* Prominent heading size */
+    font-weight: 600; /* Bolder font weight */
+    border-bottom: 2px solid #e9ecef; /* Subtle separator line */
+    padding-bottom: 10px; /* Padding above the separator */
 }
 
 .info-panel p {
     line-height: 1.7; /* Improved line spacing */
-    margin-bottom: 15px;
-    color: #495057; /* Slightly softer text color */
+    margin-bottom: 15px; /* Space below paragraphs */
+    color: #495057; /* Slightly softer text color for body copy */
 }
 
 .info-panel ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
+    list-style: none; /* Remove default list bullets */
+    padding: 0; /* Remove default list padding */
+    margin-top: 20px; /* Space above the cheese list */
 }
 
 .info-panel ul li {
-    padding: 12px 18px; /* More padding for list items */
-    margin-bottom: 8px; /* More space between list items */
-    background-color: #ffffff; /* White background for list items */
-    border: 1px solid #dee2e6; /* Light border */
-    border-radius: 6px; /* Rounded corners */
-    cursor: pointer;
-    transition: all 0.2s ease-in-out; /* Smooth transitions */
-    font-weight: 500; /* Slightly bolder text */
-    color: #34495e;
+    padding: 12px 18px; /* Generous padding for list items */
+    margin-bottom: 8px; /* Space between list items */
+    background-color: #ffffff; /* White background for individual list items */
+    border: 1px solid #dee2e6; /* Light border around list items */
+    border-radius: 6px; /* Rounded corners for list items */
+    cursor: pointer; /* Indicate clickable items */
+    transition: all 0.2s ease-in-out; /* Smooth transitions for hover and active states */
+    font-weight: 500; /* Medium font weight */
+    color: #34495e; /* Dark blue-gray text color */
 }
 
 .info-panel ul li:hover {
-    background-color: #e9ecef; /* Lighter hover state */
-    border-color: #ced4da;
-    transform: translateX(5px); /* Subtle slide effect on hover */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    background-color: #e9ecef; /* Lighter background on hover */
+    border-color: #ced4da; /* Slightly darker border on hover */
+    transform: translateX(5px); /* Subtle horizontal slide effect on hover */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Small shadow on hover */
 }
 
 .info-panel ul li.active {
-    background-color: #007bff; /* Primary blue for active state */
-    color: white;
-    font-weight: 600;
-    border-color: #0056b3;
-    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+    background-color: #007bff; /* Primary blue for the active (selected) list item */
+    color: white; /* White text for active item */
+    font-weight: 600; /* Bolder text for active item */
+    border-color: #0056b3; /* Darker blue border */
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3); /* Glowing shadow for active item */
     transform: translateX(0); /* Ensure no translation when active */
 }
 
-/* Styling for the cheese details section */
+/* Styling for the cheese details section when a cheese is selected */
 .cheese-details h3 {
-    color: #28a745; /* Green color for cheese name in details */
+    color: #28a745; /* Green color for the cheese name in the details view */
     margin-bottom: 12px;
-    font-size: 2em; /* Prominent cheese name */
+    font-size: 2em; /* Prominent size for the cheese name */
     font-weight: 700;
-    border-bottom: none; /* Remove bottom border */
+    border-bottom: none; /* No bottom border needed here */
     padding-bottom: 0;
 }
 
@@ -183,52 +183,52 @@ h1 {
 }
 
 .cheese-details button#backToList {
-    background-color: #6c757d; /* Muted gray for back button */
+    background-color: #6c757d; /* Muted gray for the "Back to List" button */
     color: white;
-    border: none;
-    padding: 12px 20px; /* More padding */
-    border-radius: 8px; /* More rounded corners */
+    border: none; /* No border */
+    padding: 12px 20px; /* Generous padding for the button */
+    border-radius: 8px; /* Rounded corners */
     cursor: pointer;
     font-size: 1.1em; /* Slightly larger text */
     font-weight: 500;
-    transition: background-color 0.2s ease, transform 0.1s ease;
+    transition: background-color 0.2s ease, transform 0.1s ease; /* Smooth hover effects */
     margin-top: 20px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .cheese-details button#backToList:hover {
     background-color: #5a6268; /* Darker gray on hover */
-    transform: translateY(-2px); /* Slight lift on hover */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px); /* Slight lift effect on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
 }
 
 
-/* Responsive layout for larger screens: map and info panel side-by-side */
+/* Responsive layout for larger screens (desktops, large tablets) */
 @media (min-width: 1025px) {
-    .content-wrapper { /* Apply flex-row to the new wrapper */
-        flex-direction: row;
-        align-items: flex-start; /* Align items to the top */
-        justify-content: center; /* Center the entire content block */
+    .content-wrapper { /* Apply row layout to the content-wrapper */
+        flex-direction: row; /* Arrange map and info panel side-by-side */
+        align-items: flex-start; /* Align both to the top */
+        justify-content: center; /* Center the combined block horizontally */
     }
 }
 
-/* Further adjustments for very small screens (e.g., mobile portrait) */
+/* Adjustments for smaller screens (e.g., mobile portrait, small tablets) */
 @media (max-width: 768px) {
     body {
-        padding: 15px; /* Reduce overall padding */
+        padding: 15px; /* Reduce overall page padding on smaller screens */
     }
 
     .container {
-        padding: 20px; /* Reduce container padding */
-        border-radius: 8px; /* Slightly less rounded on small screens */
+        padding: 20px; /* Reduce container internal padding */
+        border-radius: 8px; /* Slightly less rounded corners on small screens */
     }
 
     h1 {
-        font-size: 2em; /* Smaller title on mobile */
+        font-size: 2em; /* Smaller title size for mobile readability */
     }
 
     .info-panel h2 {
-        font-size: 1.6em;
+        font-size: 1.6em; /* Smaller info panel heading */
     }
 
     .cheese-marker {
@@ -238,6 +238,6 @@ h1 {
     }
 
     .info-panel ul li {
-        padding: 10px 15px; /* Smaller padding for list items */
+        padding: 10px 15px; /* Slightly less padding for list items on mobile */
     }
 }
